@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PET CAM</title>
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="jb-container">
+    <hr class="a">
+    <p>
+    <img src="{{ url_for('video_feed') }}">
+    </p>
+    <hr class="a">
+    <p>
+    <h1>현재 온도 {{ temp }} &deg;C </h1>
+    <h1>현재 습도 {{ humi }} &#37; </h1>
+    </p>
+    <hr class="a">
+    <p>
+    <div class="main">
+    <div>
+    <button onclick="led_on()">선풍기 ON</button>
+    </div>
+    <div>
+    <button onclick="led_off()">선풍기 OFF</button>
+    </div>
+    </div>
+    </p>
+    <hr class="a">
+    <div id="result">
+    </div>
+    </div>
+    <script>
+        function led_on(){
+            fetch("/led/on")
+            .then(response=> { console.log(response); return response.text()})
+            .then(data=> {
+                console.log(data);
+                let result = document.querySelector("#result");
+                if(data=="ok"){
+                    result.innerHTML = "<h1>선풍기 ON</h1>";
+                }else{
+                    result.innerHTML = "<h1>error</h1>";
+                }
+            });
+        }
+        function led_off(){
+            fetch("/led/off")
+            .then(response=> response.text())
+            .then(data=> {
+                console.log(data);
+                let result = document.querySelector("#result");
+                if(data=="ok"){  
+                    result.innerHTML = "<h1>선풍기 OFF</h1>";
+                }else{
+                    result.innerHTML = "<h1>error</h1>";
+                }
+            });
+        }
+    </script>
+</body>
+</html>

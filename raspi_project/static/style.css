@@ -1,0 +1,31 @@
+body {
+    background-color: rgb(255, 138, 128);
+}
+
+.main {
+    display: flex;
+}
+
+.main div {
+    flex:1;
+}
+
+.main div button {
+    background-color: rgb(255, 158, 148);
+    width:100px;
+    height:80px;
+    color: white;
+    
+    border-radius: 30px;
+}
+
+.jb-container {
+    margin: 10px auto;
+    padding: 20px;
+    border: 5px solid #ffffff;
+    color: white;
+  }
+.a{
+    background-color:white;
+    height: 5px;
+      }
